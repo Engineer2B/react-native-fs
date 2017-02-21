@@ -1,0 +1,42 @@
+{
+	"compileOnSave": true,
+	"compilerOptions": {
+			"target": "es2015",
+			"module": "es2015",
+			"jsx": "react",
+			"outDir": "build",
+			"rootDir": "src",
+			"allowSyntheticDefaultImports": true,
+			"noImplicitAny": true,
+			"experimentalDecorators": true,
+			"preserveConstEnums": true,
+			"allowJs": true,
+			"sourceMap": true,
+			"typeRoots": [
+				"node_modules/@types"]
+	},
+	"include": [
+		"src/**/*.ts"
+	],
+	"exclude": [
+			"index.android.js",
+			"index.ios.js",
+			"build",
+			"node_modules",
+			"!/node_modules/@types"
+	],
+	"formatCodeOptions": {
+		"indentSize": 2,
+		"tabSize": 2,
+		"newLineCharacter": "\r\n",
+		"convertTabsToSpaces": false,
+		"insertSpaceAfterCommaDelimiter": true,
+		"insertSpaceAfterSemicolonInForStatements": true,
+		"insertSpaceBeforeAndAfterBinaryOperators": true,
+		"insertSpaceAfterKeywordsInControlFlowStatements": true,
+		"insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+		"insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
+		"placeOpenBraceOnNewLineForFunctions": false,
+		"placeOpenBraceOnNewLineForControlBlocks": false
+	}
+}
