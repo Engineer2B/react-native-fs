@@ -5,7 +5,6 @@
 			"module": "es2015",
 			"jsx": "react",
 			"outDir": "build",
-			"rootDir": "src",
 			"allowSyntheticDefaultImports": true,
 			"noImplicitAny": true,
 			"experimentalDecorators": true,
@@ -16,14 +15,15 @@
 				"node_modules/@types"]
 	},
 	"include": [
-		"src/**/*.ts"
+		"src/**/*.d.ts",
+		"src/**/*.ts",
+		"IntegrationTests/**/*.tsx"
 	],
 	"exclude": [
 			"index.android.js",
 			"index.ios.js",
 			"build",
-			"node_modules",
-			"!/node_modules/@types"
+			"node_modules"
 	],
 	"formatCodeOptions": {
 		"indentSize": 2,

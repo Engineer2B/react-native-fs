@@ -44,19 +44,19 @@ declare namespace rnfs {
      * Write content to a file.
      * @param {string} filePath The (unix style) path to the file.
      * @param {string} contents A string that will be written to the file.
-     * @param {EncodingEnum} targetEncoding The targeted encoding of the contents.
+     * @param {EncodingEnum=} [targetEncoding=UTF8] The targeted encoding of the contents.
      * @returns {(Promise<null | { filePath: string, exception: Error }>)} A promise with the result.
      */
-    writeFile(filePath: string, contents: string, targetEncoding: EncodingEnum): Promise<null | { filePath: string, exception: Error }>;
+    writeFile(filePath: string, contents: string, targetEncoding?: EncodingEnum): Promise<null | { filePath: string, exception: Error }>;
 
     /**
      * Append content to a file.
      * @param {string} filePath The (unix style) path to the file.
      * @param {string} contents A string that will be written to the file.
-     * @param {EncodingEnum} targetEncoding The encoding of the string.
+     * @param {EncodingEnum=} targetEncoding The encoding of the string.
      * @returns {Promise} A promise which will be null upon success.
      */
-    appendFile(filePath: string, contents: string, targetEncoding: EncodingEnum): Promise<void>;
+    appendFile(filePath: string, contents: string, targetEncoding?: EncodingEnum): Promise<void>;
 
     /**
      * Check if a file or path exists.

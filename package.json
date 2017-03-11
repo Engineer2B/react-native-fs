@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:johanneslumpe/react-native-fs.git"
+    "url": "git@github.com:Engineer2B/react-native-fs.git"
   },
   "keywords": [
     "react-component",
@@ -21,20 +21,21 @@
     "upload",
     "file-transfer"
   ],
-  "author": "Johannes Lumpe <johannes@lum.pe> (https://github.com/johanneslumpe)",
+  "author": "Boris Breuer",
   "license": "MIT",
   "dependencies": {
     "base-64": "^0.1.0",
     "utf8": "^2.1.2"
   },
   "devDependencies": {
-    "@types/base-64": "^0.1.0",
+    "@types/base-64": "^0.1.1",
+    "@types/bluebird": "^3.0.37",
     "@types/node": "^7.0.5",
-    "@types/react": "^15.0.9",
-    "@types/react-native": "^0.37.12",
+    "@types/react": "^15.0.14",
+    "@types/react-native": "^0.37.13",
     "@types/utf8": "^2.1.5",
-    "flow-bin": "0.38.0",
+    "flow-bin": "0.41.0",
     "react": "^15.4.2",
-    "react-native": "^0.41.2"
+    "react-native": "^0.42.0"
   }
 }
