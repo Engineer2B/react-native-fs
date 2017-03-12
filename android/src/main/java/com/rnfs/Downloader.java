@@ -61,9 +61,7 @@ public class Downloader extends AsyncTask<DownloadParams, int[], DownloadResult>
       connection.connect();
 
       int statusCode = connection.getResponseCode();
-      double lengthOfFile = (double)connection.getContentLengthLong();
-      
-
+      double lengthOfFile = (double)connection.getContentLength();
       boolean isRedirect = (
         statusCode != HttpURLConnection.HTTP_OK &&
         (
@@ -81,7 +79,7 @@ public class Downloader extends AsyncTask<DownloadParams, int[], DownloadResult>
         connection.connect();
 
         statusCode = connection.getResponseCode();
-        lengthOfFile = (double)connection.getContentLengthLong();
+        lengthOfFile = connection.getContentLength();
       }
 
       Map<String, List<String>> headers = connection.getHeaderFields();
