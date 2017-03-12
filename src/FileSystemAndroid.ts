@@ -1,6 +1,4 @@
-import { NativeModules, NativeAppEventEmitter } from 'react-native';
-
-import { FileStatInfo } from './FileStatInfo';
+import { NativeModules } from 'react-native';
 import { FileSystem } from './FileSystem';
 import { EncodingEnum } from './EncodingEnum';
 
@@ -25,12 +23,12 @@ export class FileSystemAndroid extends FileSystem implements rnfs.IFileSystemAnd
     return this.RNFSManager.getFSInfo(filePath);
   }
 
-
   // Android-only
   readDirAssets(dirPath: string): Promise<native.FilePathInfo[]> {
     if (!this.RNFSManager.readDirAssets) {
       throw new Error('readDirAssets is not available on this platform');
     }
+
     return this.RNFSManager.readDirAssets(dirPath);
   }
 
@@ -39,6 +37,7 @@ export class FileSystemAndroid extends FileSystem implements rnfs.IFileSystemAnd
     if (!this.RNFSManager.existsAssets) {
       throw new Error('existsAssets is not available on this platform');
     }
+
     return this.RNFSManager.existsAssets(filePath);
   }
 
@@ -47,6 +46,7 @@ export class FileSystemAndroid extends FileSystem implements rnfs.IFileSystemAnd
     if (!this.RNFSManager.readFileAssets) {
       throw new Error('readFileAssets is not available on this platform');
     }
+
     return this.RNFSManager.readFileAssets(filePath)
     .then((base64Content: string) => FileSystem.decodeString(base64Content, encoding));
   }
@@ -56,6 +56,7 @@ export class FileSystemAndroid extends FileSystem implements rnfs.IFileSystemAnd
     if (!this.RNFSManager.copyFileAssets) {
       throw new Error('copyFileAssets is not available on this platform');
     }
+
     return this.RNFSManager.copyFileAssets(FileSystemAndroid.normalizeFilePath(filePath), FileSystemAndroid.normalizeFilePath(destPath));
   }
 }

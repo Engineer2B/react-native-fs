@@ -35,8 +35,8 @@ export class FileSystemiOS extends FileSystem implements rnfs.IFileSystem {
       };
     }
 
-    let jobId = this.jobId;
-    let subscriptions: React.EmitterSubscription[] = [];
+    const jobId = this.jobId;
+    const subscriptions: React.EmitterSubscription[] = [];
 
     if (uploadBeginCbFn) {
       subscriptions.push(NativeAppEventEmitter.addListener('UploadBegin-' + jobId, uploadBeginCbFn));
@@ -46,8 +46,8 @@ export class FileSystemiOS extends FileSystem implements rnfs.IFileSystem {
       subscriptions.push(NativeAppEventEmitter.addListener('UploadProgress-' + jobId, uploadProgressCbFn));
     }
 
-    let bridgeOptions = {
-      jobId: jobId,
+    const bridgeOptions = {
+      jobId,
       toUrl: options.toUrl,
       files: options.files,
       headers: options.headers || {},
@@ -59,6 +59,7 @@ export class FileSystemiOS extends FileSystem implements rnfs.IFileSystem {
       jobId,
       promise: this.RNFSManager.uploadFiles(bridgeOptions).then(res => {
         subscriptions.forEach(sub => sub.remove());
+
         return res;
       })
     };

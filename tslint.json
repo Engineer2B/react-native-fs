@@ -59,9 +59,7 @@
         "no-unsafe-finally": true,
         "no-var-keyword": true,
         "one-line": [
-            true,
-            "check-open-brace",
-            "check-whitespace"
+            true
         ],
         "quotemark": [
             true,
@@ -83,6 +81,13 @@
                 "parameter": "nospace",
                 "property-declaration": "nospace",
                 "variable-declaration": "nospace"
+            },
+            {
+                "call-signature": "onespace",
+                "index-signature": "onespace",
+                "parameter": "onespace",
+                "property-declaration": "onespace",
+                "variable-declaration": "onespace"
             }
         ],
         "variable-name": [
@@ -96,6 +101,123 @@
             "check-operator",
             "check-separator",
             "check-type"
+        ],
+        "adjacent-overload-signatures": true,
+        "no-empty-interface": true,
+        "no-import-side-effect": true,
+        "no-magic-numbers": true,
+        "no-namespace": true,
+        "no-non-null-assertion": true,
+        "no-reference": true,
+        "no-var-requires": true,
+        "only-arrow-functions": [
+            true
+        ],
+        "prefer-for-of": false,
+        "typedef": [
+            true
+        ],
+        "unified-signatures": true,
+        "curly": true,
+        "forin": true,
+        "label-position": true,
+        "no-arg": true,
+        "no-bitwise": true,
+        "no-conditional-assignment": true,
+        "no-console": [
+            true
+        ],
+        "no-construct": true,
+        "no-debugger": true,
+        "no-duplicate-super": true,
+        "no-duplicate-variable": true,
+        "no-empty": true,
+        "no-floating-promises": true,
+        "no-for-in-array": true,
+        "no-invalid-this": true,
+        "no-misused-new": true,
+        "no-null-keyword": true,
+        "no-shadowed-variable": true,
+        "no-string-literal": true,
+        "no-string-throw": true,
+        "no-switch-case-fall-through": true,
+        "no-unbound-method": true,
+        "no-unused-expression": true,
+        "no-unused-new": true,
+        "no-unused-variable": true,
+        "no-use-before-declare": true,
+        "no-void-expression": true,
+        "radix": true,
+        "restrict-plus-operands": true,
+        "strict-boolean-expressions": true,
+        "strict-type-predicates": true,
+        "switch-default": true,
+        "typeof-compare": true,
+        "use-isnan": true,
+        "cyclomatic-complexity": [
+            true,
+            20
+        ],
+        "max-classes-per-file": [
+            true,
+            5
+        ],
+        "max-line-length": [
+            true,
+            250
+        ],
+        "no-mergeable-namespace": true,
+        "no-require-imports": true,
+        "prefer-const": true,
+        "trailing-comma": [
+            true,
+            {
+                "multiline": "never",
+                "singleline": "never"
+            }
+        ],
+        "align": [
+            true
+        ],
+        "arrow-parens": [
+            true,
+            "ban-single-arg-parens"
+        ],
+        "arrow-return-shorthand": true,
+        "callable-types": true,
+        "import-spacing": true,
+        "interface-name": [
+            true,
+            "always-prefix"
+        ],
+        "match-default-export-name": true,
+        "newline-before-return": true,
+        "new-parens": true,
+        "no-angle-bracket-type-assertion": true,
+        "no-consecutive-blank-lines": [
+            true
+        ],
+        "no-unnecessary-initializer": true,
+        "no-unnecessary-qualifier": true,
+        "object-literal-key-quotes": [
+            true,
+            "as-needed"
+        ],
+        "object-literal-shorthand": true,
+        "prefer-method-signature": true,
+        "space-before-function-paren": [
+            true,
+            "never"
+        ],
+        "member-ordering": [
+            true,
+            {
+                "order": "fields-first"
+            }
+        ],
+        "array-type": [
+            true,
+            "array"
         ]
     }
 }

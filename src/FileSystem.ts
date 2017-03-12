@@ -1,7 +1,6 @@
 import { NativeModules, NativeAppEventEmitter } from 'react-native';
 import * as base64 from 'base-64';
 import * as utf8 from 'utf8';
-import * as rnfsEnum from './EncodingEnum';
 import { Check } from './Check';
 import { FileStatInfo } from './FileStatInfo';
 import { EncodingEnum } from './EncodingEnum';
@@ -18,6 +17,7 @@ export class FileSystem implements rnfs.IFileSystem {
   private _jobId = -1;
   protected get jobId(): number {
     this._jobId++;
+
     return this._jobId;
   }
 
@@ -54,8 +54,9 @@ export class FileSystem implements rnfs.IFileSystem {
         return base64String;
       case rnfs.EncodingEnum.utf8:
         return utf8.decode(base64.decode(base64String));
+      default:
+        return Check.assertUnreachable(targetEncoding);
     }
-    return Check.assertUnreachable(targetEncoding);
   }
 
   /**
@@ -72,8 +73,9 @@ export class FileSystem implements rnfs.IFileSystem {
         return input;
       case rnfs.EncodingEnum.utf8:
         return base64.encode(utf8.encode(input));
+      default:
+        return Check.assertUnreachable(contentEncoding);
     }
-    return Check.assertUnreachable(contentEncoding);
   }
 
   readDir(dirPath: string): Promise<native.FilePathInfo[]> {
@@ -133,11 +135,11 @@ export class FileSystem implements rnfs.IFileSystem {
     return this.RNFSManager.unlink(FileSystem.normalizeFilePath(path));
   }
 
-    downloadFile(options: native.DownloadOptions,
-  downloadBeginCbFn?: (result: native.DownloadBegin) => void,
-  downloadProgressCbFn?: (result: native.DownloadProgress) => void): native.JobTicket<native.DownloadResult> {
-    let jobId = this.jobId;
-    let subscriptions: React.EmitterSubscription[] = [];
+  downloadFile(options: native.DownloadOptions,
+    downloadBeginCbFn?: (result: native.DownloadBegin) => void,
+    downloadProgressCbFn?: (result: native.DownloadProgress) => void): native.JobTicket<native.DownloadResult> {
+    const jobId = this.jobId;
+    const subscriptions: React.EmitterSubscription[] = [];
 
     if (downloadBeginCbFn) {
       subscriptions.push(NativeAppEventEmitter.addListener(`DownloadBegin-${jobId}`, downloadBeginCbFn));
@@ -147,8 +149,8 @@ export class FileSystem implements rnfs.IFileSystem {
       subscriptions.push(NativeAppEventEmitter.addListener(`DownloadProgress-${jobId}`, downloadProgressCbFn));
     }
 
-    let bridgeOptions = {
-      jobId: jobId,
+    const bridgeOptions = {
+      jobId,
       fromUrl: options.fromUrl,
       toFile: FileSystem.normalizeFilePath(options.toFile),
       headers: options.headers || {},
@@ -157,12 +159,13 @@ export class FileSystem implements rnfs.IFileSystem {
     };
 
     return {
-      jobId: jobId,
+      jobId,
       promise: this.RNFSManager.downloadFile(bridgeOptions)
-      .then(res => {
-        subscriptions.forEach(sub => sub.remove());
-        return res;
-      })
+        .then(res => {
+          subscriptions.forEach(sub => sub.remove());
+
+          return res;
+        })
     };
   }
 
