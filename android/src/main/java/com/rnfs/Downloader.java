@@ -61,7 +61,7 @@ public class Downloader extends AsyncTask<DownloadParams, int[], DownloadResult>
       connection.connect();
 
       int statusCode = connection.getResponseCode();
-      double lengthOfFile = (double)connection.getContentLength();
+      int lengthOfFile = connection.getContentLength();
       boolean isRedirect = (
         statusCode != HttpURLConnection.HTTP_OK &&
         (
@@ -101,23 +101,23 @@ public class Downloader extends AsyncTask<DownloadParams, int[], DownloadResult>
       output = new FileOutputStream(param.dest);
 
       byte data[] = new byte[8 * 1024];
-      double total = 0;
+      int total = 0;
       int count;
       double lastProgressValue = 0;
-
+      double dLengthOfFile = (double)lengthOfFile;
       while ((count = input.read(data)) != -1) {
         if (mAbort.get()) throw new Exception("Download has been aborted");
 
         total += count;
         if (param.progressDivider <= 0) {
-          publishProgress(new double[]{lengthOfFile, total});
+          publishProgress(new int[]{lengthOfFile, total});
         } else {
-          double progress = Math.round(((double) total * 100) / lengthOfFile);
+          double progress = Math.round(((double) total * 100) / dLengthOfFile);
           if (progress % param.progressDivider == 0) {
             if ((progress != lastProgressValue) || (total == lengthOfFile)) {
               Log.d("Downloader", "EMIT: " + String.valueOf(progress) + ", TOTAL:" + String.valueOf(total));
               lastProgressValue = progress;
-              publishProgress(new double[]{lengthOfFile, total});
+              publishProgress(new int[]{lengthOfFile, total});
             }
           }
         }
