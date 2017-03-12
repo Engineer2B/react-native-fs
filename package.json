@@ -2,7 +2,7 @@
   "name": "react-native-fs",
   "version": "v3.0.0",
   "description": "Native filesystem access for react-native",
-  "main": "build/Main.js",
+  "main": "build/src/Main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
