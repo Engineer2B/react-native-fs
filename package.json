@@ -2,7 +2,7 @@
   "name": "react-native-fs",
   "version": "v3.0.3",
   "description": "Native filesystem access for react-native",
-  "main": "build/src/Main.js",
+  "nativePackage": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,6 +23,7 @@
   ],
   "author": "Boris Breuer",
   "license": "MIT",
+  "readmeFilename": "README.md",
   "dependencies": {
     "base-64": "^0.1.0",
     "utf8": "^2.1.2"
