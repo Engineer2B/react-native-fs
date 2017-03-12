@@ -24,3 +24,4 @@ update-test.sh
 .vscode
 android/gradle/wrapper
 android/local.properties
+com

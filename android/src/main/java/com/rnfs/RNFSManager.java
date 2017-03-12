@@ -510,7 +510,7 @@ public class RNFSManager extends ReactContextBaseJavaModule {
       };
 
       params.onDownloadBegin = new DownloadParams.OnDownloadBegin() {
-        public void onDownloadBegin(int statusCode, double contentLength, Map<String, String> headers) {
+        public void onDownloadBegin(int statusCode, int contentLength, Map<String, String> headers) {
           WritableMap headersMap = Arguments.createMap();
 
           for (Map.Entry<String, String> entry : headers.entrySet()) {
@@ -521,7 +521,7 @@ public class RNFSManager extends ReactContextBaseJavaModule {
 
           data.putInt("jobId", jobId);
           data.putInt("statusCode", statusCode);
-          data.putDouble("contentLength", contentLength);
+          data.putInt("contentLength", contentLength);
           data.putMap("headers", headersMap);
 
           sendEvent(getReactApplicationContext(), "DownloadBegin-" + jobId, data);
@@ -529,11 +529,11 @@ public class RNFSManager extends ReactContextBaseJavaModule {
       };
 
       params.onDownloadProgress = new DownloadParams.OnDownloadProgress() {
-        public void onDownloadProgress(double contentLength, double bytesWritten) {
+        public void onDownloadProgress(int contentLength, double bytesWritten) {
           WritableMap data = Arguments.createMap();
 
           data.putInt("jobId", jobId);
-          data.putDouble("contentLength", contentLength);
+          data.putInt("contentLength", contentLength);
           data.putDouble("bytesWritten", bytesWritten);
 
           sendEvent(getReactApplicationContext(), "DownloadProgress-" + jobId, data);
