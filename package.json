@@ -1,8 +1,9 @@
 {
   "name": "react-native-fs",
-  "version": "v3.0.3",
+  "version": "v3.0.4",
   "description": "Native filesystem access for react-native",
   "nativePackage": true,
+  "main": "build/src/Main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -38,5 +39,20 @@
     "flow-bin": "0.41.0",
     "react": "^15.4.2",
     "react-native": "^0.42.0"
-  }
+  },
+  "files":[
+    "android",
+    "build",
+    "IntegrationTests",
+    "src",
+    "RNFSManager.h",
+    "RNFSManager.m",
+    "Uploader.h",
+    "Uploader.m",
+    "NSArray+Map.h",
+    "NSArray+Map.m",
+    "Downloader.h",
+    "Downloader.m",
+    ".npmignore"
+  ]
 }
