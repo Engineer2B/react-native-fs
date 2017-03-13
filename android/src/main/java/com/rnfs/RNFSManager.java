@@ -415,7 +415,7 @@ public class RNFSManager extends ReactContextBaseJavaModule {
 
       WritableMap statMap = Arguments.createMap();
 
-      statMap.putInt("parent", file.getParent());
+      statMap.putString("parent", file.getParent());
       statMap.putInt("mtime", (int)(file.lastModified() / 1000));
       statMap.putInt("size", (int)file.length());
       statMap.putInt("type", file.isDirectory() ? 1 : 0);
@@ -568,7 +568,7 @@ public class RNFSManager extends ReactContextBaseJavaModule {
     @ReactMethod
   public void getFSInfo(String filePath, Promise promise) {
     // File path = Environment.getDataDirectory();
-    StatFs stat = new StatFs(filePath.getPath());
+    StatFs stat = new StatFs(filePath);
     long totalSpace;
     long freeSpace;
     if (android.os.Build.VERSION.SDK_INT >= 18) {
