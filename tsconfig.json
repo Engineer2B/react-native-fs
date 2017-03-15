@@ -11,7 +11,8 @@
 			"experimentalDecorators": true,
 			"preserveConstEnums": true,
 			"allowJs": true,
-			"inlineSourceMap": true,
+			"inlineSourceMap": false,
+			"noLib": false,
 			"typeRoots": [
 				"node_modules/@types"]
 	},
