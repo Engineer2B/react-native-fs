@@ -1,8 +1,11 @@
 import { NativeModules } from 'react-native';
 import { FileSystem } from './FileSystem';
 import { EncodingEnum } from './EncodingEnum';
+import { IFileSystemAndroid } from './interfaces/rnfs/IAndroidFileSystem';
+import { IFileSystemInfo } from './interfaces/native/IFileSystemInfo';
+import { IFilePathInfo } from './interfaces/native/IFilePathInfo';
 
-export class FileSystemAndroid extends FileSystem implements rnfs.IFileSystemAndroid {
+export class FileSystemAndroid extends FileSystem implements IFileSystemAndroid {
   DocumentDirectory: string;
   PicturesDirectoryPath: string;
 
@@ -19,12 +22,12 @@ export class FileSystemAndroid extends FileSystem implements rnfs.IFileSystemAnd
     this.PicturesDirectoryPath = this.RNFSManager.RNFSPicturesDirectoryPath;
   }
 
-  getFSInfo(filePath: string = this.DocumentDirectory): Promise<native.FileSystemInfo> {
+  getFSInfo(filePath: string = this.DocumentDirectory): Promise<IFileSystemInfo> {
     return this.RNFSManager.getFSInfo(filePath);
   }
 
   // Android-only
-  readDirAssets(dirPath: string): Promise<native.FilePathInfo[]> {
+  readDirAssets(dirPath: string): Promise<IFilePathInfo[]> {
     if (!this.RNFSManager.readDirAssets) {
       throw new Error('readDirAssets is not available on this platform');
     }
@@ -42,7 +45,7 @@ export class FileSystemAndroid extends FileSystem implements rnfs.IFileSystemAnd
   }
 
   // * Android only
-  readFileAssets(filePath: string, encoding: rnfs.EncodingEnum = (EncodingEnum.utf8 as any as rnfs.EncodingEnum )): Promise<string> {
+  readFileAssets(filePath: string, encoding: EncodingEnum = (EncodingEnum.utf8 as any as EncodingEnum )): Promise<string> {
     if (!this.RNFSManager.readFileAssets) {
       throw new Error('readFileAssets is not available on this platform');
     }

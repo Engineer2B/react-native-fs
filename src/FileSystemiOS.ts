@@ -1,6 +1,14 @@
 import { NativeModules, NativeAppEventEmitter } from 'react-native';
 import { FileSystem } from './FileSystem';
-export class FileSystemiOS extends FileSystem implements rnfs.IFileSystem {
+import { IFileSystem } from './interfaces/rnfs/IFileSystem';
+import { IUploadProgress } from './interfaces/iOS/IUploadProgress';
+import { IUploadOptions } from './interfaces/iOS/IUploadOptions';
+import { IUploadBegin } from './interfaces/iOS/IUploadBegin';
+import { IUploadResult } from './interfaces/iOS/IUploadResult';
+import { IDirectoryOptions } from './interfaces/iOS/IDirectoryOptions';
+import { IJobTicket } from './interfaces/native/IJobTicket';
+
+export class FileSystemiOS extends FileSystem implements IFileSystem {
   LibraryDirectoryPath: string;
   MainBundlePath: string;
 
@@ -12,7 +20,7 @@ export class FileSystemiOS extends FileSystem implements rnfs.IFileSystem {
     this.LibraryDirectoryPath = this.RNFSManager.RNFSLibraryDirectoryPath;
   }
 
-  mkdir(dirPath: string, options: native.iOS.DirectoryOptions = {}): Promise<void> {
+  mkdir(dirPath: string, options: IDirectoryOptions = {}): Promise<void> {
     return this.RNFSManager.mkdir(dirPath, options);
   }
 
@@ -24,10 +32,10 @@ export class FileSystemiOS extends FileSystem implements rnfs.IFileSystem {
     this.RNFSManager.stopUpload(jobId);
   }
 
-  uploadFiles(options: native.iOS.UploadOptions,
-    uploadBeginCbFn?: (result: native.iOS.UploadBegin) => void,
-    uploadProgressCbFn?: (result: native.iOS.UploadProgress) => void
-  ): native.JobTicket<native.iOS.UploadResult> {
+  uploadFiles(options: IUploadOptions,
+    uploadBeginCbFn?: (result: IUploadBegin) => void,
+    uploadProgressCbFn?: (result: IUploadProgress) => void
+  ): IJobTicket<IUploadResult> {
     if (!this.RNFSManager.uploadFiles) {
       return {
         jobId: -1,

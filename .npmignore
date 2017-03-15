@@ -26,3 +26,4 @@ android/gradle/wrapper
 android/local.properties
 com
 android/build
+.vs

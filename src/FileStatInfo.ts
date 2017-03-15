@@ -1,10 +1,12 @@
+import * as rnfs from './interfaces/rnfs/IFileStatInfo';
+import * as native from './interfaces/native/IFileStatInfo';
 export class FileStatInfo implements rnfs.IFileStatInfo {
   /**
-* The length, in bytes, of the file denoted by this abstract pathname,
-* or 0L if the file does not exist.
-* Some operating systems may return 0L for pathnames denoting
-* system-dependent entities such as devices or pipes.
-*/
+  * The length, in bytes, of the file denoted by this abstract pathname,
+  * or 0L if the file does not exist.
+  * Some operating systems may return 0L for pathnames denoting
+  * system-dependent entities such as devices or pipes.
+  */
   get Size(): number {
     return this.size;
   }
@@ -39,11 +41,11 @@ export class FileStatInfo implements rnfs.IFileStatInfo {
     private modifiedTime: Date) {
   }
 
-  static FromNativeFileStatInfo(input: native.FileStatInfo): FileStatInfo {
+  static FromNativeFileStatInfo(input: native.IFileStatInfo): FileStatInfo {
     return new FileStatInfo(
       input.size,
-    input.isdirectory === 1,
-    input.parent,
-    new Date(input.mtime * 1000));
+      input.isdirectory === 1,
+      input.parent,
+      new Date(input.mtime * 1000));
   }
 }

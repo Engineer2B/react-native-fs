@@ -4,8 +4,17 @@ import * as utf8 from 'utf8';
 import { Check } from './Check';
 import { FileStatInfo } from './FileStatInfo';
 import { EncodingEnum } from './EncodingEnum';
+import { IFileSystem } from './interfaces/rnfs/IFileSystem';
+import { IFilePathInfo } from './interfaces/native/IFilePathInfo';
+import { HashAlgorithm } from './interfaces/native/FileSystemTypes';
+import { IDownloadOptions } from './interfaces/native/IDownloadOptions';
+import { IDownloadBegin } from './interfaces/native/IDownloadBegin';
+import { IDownloadProgress } from './interfaces/native/IDownloadProgress';
+import { IJobTicket } from './interfaces/native/IJobTicket';
+import { IDownloadResult } from './interfaces/native/IDownloadResult';
+import { IFileSystemInfo } from './interfaces/native/IFileSystemInfo';
 
-export class FileSystem implements rnfs.IFileSystem {
+export class FileSystem implements IFileSystem {
   CachesDirectoryPath: string;
   DocumentDirectoryPath: string;
   ExternalDirectoryPath: string;
@@ -46,13 +55,13 @@ export class FileSystem implements rnfs.IFileSystem {
     * is converted.
     * @returns {string} The converted string.
     */
-  protected static decodeString(base64String: string, targetEncoding: rnfs.EncodingEnum): string {
+  protected static decodeString(base64String: string, targetEncoding: EncodingEnum): string {
     switch (targetEncoding) {
-      case rnfs.EncodingEnum.ascii:
+      case EncodingEnum.ascii:
         return base64.decode(base64String);
-      case rnfs.EncodingEnum.base64:
+      case EncodingEnum.base64:
         return base64String;
-      case rnfs.EncodingEnum.utf8:
+      case EncodingEnum.utf8:
         return utf8.decode(base64.decode(base64String));
       default:
         return Check.assertUnreachable(targetEncoding);
@@ -65,20 +74,20 @@ export class FileSystem implements rnfs.IFileSystem {
    * @param {EncodingEnum} contentEncoding The encoding of the content.
    * @returns {string} The converted string.
    */
-  protected static encodeString(input: string, contentEncoding: rnfs.EncodingEnum): string {
+  protected static encodeString(input: string, contentEncoding: EncodingEnum): string {
     switch (contentEncoding) {
-      case rnfs.EncodingEnum.ascii:
+      case EncodingEnum.ascii:
         return base64.encode(input);
-      case rnfs.EncodingEnum.base64:
+      case EncodingEnum.base64:
         return input;
-      case rnfs.EncodingEnum.utf8:
+      case EncodingEnum.utf8:
         return base64.encode(utf8.encode(input));
       default:
         return Check.assertUnreachable(contentEncoding);
     }
   }
 
-  readDir(dirPath: string): Promise<native.FilePathInfo[]> {
+  readDir(dirPath: string): Promise<IFilePathInfo[]> {
     return this.RNFSManager.readDir(dirPath);
   }
 
@@ -97,13 +106,13 @@ export class FileSystem implements rnfs.IFileSystem {
     return this.RNFSManager.moveFile(FileSystem.normalizeFilePath(inputPath), FileSystem.normalizeFilePath(destPath));
   }
 
-  writeFile(filePath: string, contents: string, targetEncoding: rnfs.EncodingEnum): Promise<null | { filePath: string, exception: Error }> {
+  writeFile(filePath: string, contents: string, targetEncoding: EncodingEnum): Promise<null | { filePath: string, exception: Error }> {
     return this.RNFSManager.writeFile(
       FileSystem.normalizeFilePath(filePath),
       FileSystem.encodeString(contents, targetEncoding));
   }
 
-  appendFile(filePath: string, contents: string, targetEncoding: rnfs.EncodingEnum): Promise<null> {
+  appendFile(filePath: string, contents: string, targetEncoding: EncodingEnum): Promise<null> {
     return this.RNFSManager.appendFile(
       FileSystem.normalizeFilePath(filePath),
       FileSystem.encodeString(contents, targetEncoding));
@@ -113,12 +122,12 @@ export class FileSystem implements rnfs.IFileSystem {
     return this.RNFSManager.exists(FileSystem.normalizeFilePath(path));
   }
 
-  readFile(filePath: string, encoding: rnfs.EncodingEnum = (EncodingEnum.utf8 as any as rnfs.EncodingEnum)): Promise<string> {
+  readFile(filePath: string, encoding: EncodingEnum = (EncodingEnum.utf8 as any as EncodingEnum)): Promise<string> {
     return this.RNFSManager.readFile(filePath)
       .then((base64Content: string) => FileSystem.decodeString(base64Content, encoding));
   }
 
-  hash(filepath: string, algorithm: native.HashAlgorithm): Promise<string> {
+  hash(filepath: string, algorithm: HashAlgorithm): Promise<string> {
     return this.RNFSManager.hash(filepath, algorithm);
   }
 
@@ -135,9 +144,9 @@ export class FileSystem implements rnfs.IFileSystem {
     return this.RNFSManager.unlink(FileSystem.normalizeFilePath(path));
   }
 
-  downloadFile(options: native.DownloadOptions,
-    downloadBeginCbFn?: (result: native.DownloadBegin) => void,
-    downloadProgressCbFn?: (result: native.DownloadProgress) => void): native.JobTicket<native.DownloadResult> {
+  downloadFile(options: IDownloadOptions,
+    downloadBeginCbFn?: (result: IDownloadBegin) => void,
+    downloadProgressCbFn?: (result: IDownloadProgress) => void): IJobTicket<IDownloadResult> {
     const jobId = this.jobId;
     const subscriptions: React.EmitterSubscription[] = [];
 
@@ -173,7 +182,7 @@ export class FileSystem implements rnfs.IFileSystem {
     this.RNFSManager.stopDownload(jobId);
   }
 
-  getFSInfo(): Promise<native.FileSystemInfo> {
+  getFSInfo(): Promise<IFileSystemInfo> {
     return this.RNFSManager.getFSInfo();
   }
 }
