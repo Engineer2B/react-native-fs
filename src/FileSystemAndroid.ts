@@ -6,8 +6,16 @@ import { IFileSystemInfo } from './interfaces/native/IFileSystemInfo';
 import { IFilePathInfo } from './interfaces/native/IFilePathInfo';
 
 export class FileSystemAndroid extends FileSystem implements IFileSystemAndroid {
-  DocumentDirectory: string;
-  PicturesDirectoryPath: string;
+  public AlarmsDirectory: string;
+  public DCIMDirectory: string;
+  public DownloadsDirectory: string;
+  public MoviesDirectory: string;
+  public MusicDirectory: string;
+  public NotificationsDirectory: string;
+  public PodcastsDirectory: string;
+  public RingtonesDirectory: string;
+  public DocumentDirectory: string;
+  public PicturesDirectoryPath: string;
 
   protected RNFSManager: NativeModules.IAndroidRNFSManager;
 
@@ -19,6 +27,14 @@ export class FileSystemAndroid extends FileSystem implements IFileSystemAndroid 
     this.ExternalDirectoryPath = this.RNFSManager.RNFSExternalDirectoryPath;
     this.ExternalStorageDirectoryPath = this.RNFSManager.RNFSExternalStorageDirectoryPath;
     this.PicturesDirectoryPath = this.RNFSManager.RNFSPicturesDirectoryPath;
+    this.AlarmsDirectory = this.RNFSManager.RNFSDirectoryAlarms;
+    this.DCIMDirectory = this.RNFSManager.RNFSDirectoryDCIM;
+    this.DownloadsDirectory = this.RNFSManager.RNFSDirectoryDownloads;
+    this.MoviesDirectory = this.RNFSManager.RNFSDirectoryMovies;
+    this.MusicDirectory = this.RNFSManager.RNFSDirectoryMusic;
+    this.NotificationsDirectory = this.RNFSManager.RNFSDirectoryNotifications;
+    this.PodcastsDirectory = this.RNFSManager.RNFSDirectoryPodcasts;
+    this.RingtonesDirectory = this.RNFSManager.RNFSDirectoryRingtones;
   }
 
   getFSInfo(filePath: string = this.DocumentDirectory): Promise<IFileSystemInfo> {

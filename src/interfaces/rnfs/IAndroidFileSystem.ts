@@ -8,6 +8,14 @@ import { IFilePathInfo } from '../native/IFilePathInfo';
 export interface IFileSystemAndroid extends IFileSystem {
   PicturesDirectoryPath: string;
   DocumentDirectory: string;
+  AlarmsDirectory: string;
+  DCIMDirectory: string;
+  DownloadsDirectory: string;
+  MoviesDirectory: string;
+  MusicDirectory: string;
+  NotificationsDirectory: string;
+  PodcastsDirectory: string;
+  RingtonesDirectory: string;
 
   /**
    * Retrieve the info of the file system that contains the given path.
