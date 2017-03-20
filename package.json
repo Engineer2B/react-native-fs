@@ -1,9 +1,9 @@
 {
   "name": "react-native-fs",
-  "version": "v3.0.8",
+  "version": "v3.0.9",
   "description": "Native filesystem access for react-native",
   "main": "build/src/Main.js",
-  "typings": "build/src/Main",
+  "typings": "build/src/Main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,6 +27,7 @@
   "readmeFilename": "README.md",
   "dependencies": {
     "base-64": "^0.1.0",
+    "react-native": "^0.42.0",
     "utf8": "^2.1.2"
   },
   "devDependencies": {
@@ -34,13 +35,13 @@
     "@types/bluebird": "^3.0.37",
     "@types/node": "^7.0.5",
     "@types/react": "^15.0.14",
-    "@types/react-native": "^0.37.13",
+    "@types/react-native": "^0.42.6",
     "@types/utf8": "^2.1.5",
     "flow-bin": "0.41.0",
     "react": "^15.4.2",
     "react-native": "^0.42.0"
   },
-  "files":[
+  "files": [
     "android",
     "build",
     "IntegrationTests",

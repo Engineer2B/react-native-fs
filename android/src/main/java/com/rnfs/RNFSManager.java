@@ -37,10 +37,8 @@ public class RNFSManager extends ReactContextBaseJavaModule {
   private static final String RNFSExternalDirectoryPath = "RNFSExternalDirectoryPath";
   private static final String RNFSExternalStorageDirectoryPath = "RNFSExternalStorageDirectoryPath";
   private static final String RNFSPicturesDirectoryPath = "RNFSPicturesDirectoryPath";
-  private static final String RNFSTemporaryDirectoryPath = "RNFSTemporaryDirectoryPath";
   private static final String RNFSCachesDirectoryPath = "RNFSCachesDirectoryPath";
   private static final String RNFSDocumentDirectory = "RNFSDocumentDirectory";
-
   private static final String RNFSFileTypeRegular = "RNFSFileTypeRegular";
   private static final String RNFSFileTypeDirectory = "RNFSFileTypeDirectory";
 
@@ -602,17 +600,73 @@ public class RNFSManager extends ReactContextBaseJavaModule {
     promise.reject("EISDIR", "EISDIR: illegal operation on a directory, read");
   }
 
+
+
   @Override
   public Map<String, Object> getConstants() {
     final Map<String, Object> constants = new HashMap<>();
 
-    constants.put(RNFSDocumentDirectory, 0);
+    constants.put(RNFSDocumentDirectory, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath());
     constants.put(RNFSDocumentDirectoryPath, this.getReactApplicationContext().getFilesDir().getAbsolutePath());
-    constants.put(RNFSTemporaryDirectoryPath, null);
     constants.put(RNFSPicturesDirectoryPath, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath());
     constants.put(RNFSCachesDirectoryPath, this.getReactApplicationContext().getCacheDir().getAbsolutePath());
     constants.put(RNFSFileTypeRegular, 0);
     constants.put(RNFSFileTypeDirectory, 1);
+    constants.put("RNFSDirectoryAlarms",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_ALARMS).getAbsolutePath());
+    constants.put("RNFSDirectoryDCIM",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath());
+    constants.put("RNFSDirectoryDownloads",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath());
+    constants.put("RNFSDirectoryMovies",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES).getAbsolutePath());
+    constants.put("RNFSDirectoryMusic",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC).getAbsolutePath());
+    constants.put("RNFSDirectoryNotifications",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_NOTIFICATIONS).getAbsolutePath());
+    constants.put("RNFSDirectoryPodcasts",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PODCASTS).getAbsolutePath());
+    constants.put("RNFSDirectoryRingtones",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_RINGTONES).getAbsolutePath());;
+    /**
+    public static String	DIRECTORY_ALARMS
+    Standard directory in which to place any audio files that should be in the list of alarms that the user can select (not as regular music).
+    public static String	DIRECTORY_DCIM
+    The traditional location for pictures and videos when mounting the device as a camera.
+    public static String	DIRECTORY_DOCUMENTS
+    Standard directory in which to place documents that have been created by the user.
+    public static String	DIRECTORY_DOWNLOADS
+    Standard directory in which to place files that have been downloaded by the user.
+    public static String	DIRECTORY_MOVIES
+    Standard directory in which to place movies that are available to the user.
+    public static String	DIRECTORY_MUSIC
+    Standard directory in which to place any audio files that should be in the regular list of music for the user.
+    public static String	DIRECTORY_NOTIFICATIONS
+    Standard directory in which to place any audio files that should be in the list of notifications that the user can select (not as regular music).
+    public static String	DIRECTORY_PICTURES
+    Standard directory in which to place pictures that are available to the user.
+    public static String	DIRECTORY_PODCASTS
+    Standard directory in which to place any audio files that should be in the list of podcasts that the user can select (not as regular music).
+    public static String	DIRECTORY_RINGTONES
+    Standard directory in which to place any audio files that should be in the list of ringtones that the user can select (not as regular music).
+    static File	getDataDirectory()
+    Return the user data directory.
+    static File	getDownloadCacheDirectory()
+    Return the download/cache content directory.
+    static File	getExternalStorageDirectory()
+    Return the primary shared/external storage directory.
+    static File	getExternalStoragePublicDirectory(String type)
+    Get a top-level shared/external storage directory for placing files of a particular type.
+    static String	getExternalStorageState()
+    Returns the current state of the primary shared/external storage media.
+    static String	getExternalStorageState(File path)
+    Returns the current state of the shared/external storage media at the given path.
+    static File	getRootDirectory()
+    Return root of the "system" partition holding the core Android OS.
+    static String	getStorageState(File path)
+    This method was deprecated in API level 21. use getExternalStorageState(File)
+    static boolean	isExternalStorageEmulated()
+    Returns whether the primary shared/external storage media is emulated.
+    static boolean	isExternalStorageEmulated(File path)
+    Returns whether the shared/external storage media at the given path is emulated.
+    static boolean	isExternalStorageRemovable()
+    Returns whether the primary shared/external storage media is physically removable.
+    static boolean	isExternalStorageRemovable(File path)
+    Returns whether the shared/external storage media at the given path is physically removable.
+    https://developer.android.com/reference/android/os/Environment.html
+    */
 
     File externalStorageDirectory = Environment.getExternalStorageDirectory();
     if (externalStorageDirectory != null) {

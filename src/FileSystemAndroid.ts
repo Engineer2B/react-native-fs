@@ -18,7 +18,6 @@ export class FileSystemAndroid extends FileSystem implements IFileSystemAndroid 
     this.DocumentDirectoryPath = this.RNFSManager.RNFSDocumentDirectoryPath;
     this.ExternalDirectoryPath = this.RNFSManager.RNFSExternalDirectoryPath;
     this.ExternalStorageDirectoryPath = this.RNFSManager.RNFSExternalStorageDirectoryPath;
-    this.TemporaryDirectoryPath = this.RNFSManager.RNFSTemporaryDirectoryPath;
     this.PicturesDirectoryPath = this.RNFSManager.RNFSPicturesDirectoryPath;
   }
 

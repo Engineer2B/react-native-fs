@@ -13,6 +13,7 @@ import { IUploadResult } from '../iOS/IUploadResult';
 export interface IFileSystemiOS extends IFileSystem {
   LibraryDirectoryPath: string;
   MainBundlePath: string;
+  TemporaryDirectoryPath: string;
 
   /**
    * Create a new directory.

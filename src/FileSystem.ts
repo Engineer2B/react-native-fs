@@ -19,7 +19,6 @@ export class FileSystem implements IFileSystem {
   DocumentDirectoryPath: string;
   ExternalDirectoryPath: string;
   ExternalStorageDirectoryPath: string;
-  TemporaryDirectoryPath: string;
 
   protected RNFSManager: NativeModules.IiOSRNFSManager | NativeModules.IAndroidRNFSManager;
 
@@ -36,7 +35,6 @@ export class FileSystem implements IFileSystem {
     this.DocumentDirectoryPath = this.RNFSManager.RNFSDocumentDirectoryPath;
     this.ExternalDirectoryPath = this.RNFSManager.RNFSExternalDirectoryPath;
     this.ExternalStorageDirectoryPath = this.RNFSManager.RNFSExternalStorageDirectoryPath;
-    this.TemporaryDirectoryPath = this.RNFSManager.RNFSTemporaryDirectoryPath;
   }
 
   /**

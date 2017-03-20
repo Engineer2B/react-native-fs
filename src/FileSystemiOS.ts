@@ -1,16 +1,17 @@
 import { NativeModules, NativeAppEventEmitter } from 'react-native';
 import { FileSystem } from './FileSystem';
-import { IFileSystem } from './interfaces/rnfs/IFileSystem';
 import { IUploadProgress } from './interfaces/iOS/IUploadProgress';
 import { IUploadOptions } from './interfaces/iOS/IUploadOptions';
 import { IUploadBegin } from './interfaces/iOS/IUploadBegin';
 import { IUploadResult } from './interfaces/iOS/IUploadResult';
 import { IDirectoryOptions } from './interfaces/iOS/IDirectoryOptions';
 import { IJobTicket } from './interfaces/native/IJobTicket';
+import { IFileSystemiOS } from './interfaces/rnfs/IFileSystemiOS';
 
-export class FileSystemiOS extends FileSystem implements IFileSystem {
+export class FileSystemiOS extends FileSystem implements IFileSystemiOS {
   LibraryDirectoryPath: string;
   MainBundlePath: string;
+ TemporaryDirectoryPath: string;
 
   protected RNFSManager: NativeModules.IiOSRNFSManager;
 
@@ -18,6 +19,7 @@ export class FileSystemiOS extends FileSystem implements IFileSystem {
     super();
     this.MainBundlePath = this.RNFSManager.RNFSMainBundlePath;
     this.LibraryDirectoryPath = this.RNFSManager.RNFSLibraryDirectoryPath;
+    this.TemporaryDirectoryPath = this.RNFSManager.RNFSTemporaryDirectoryPath;
   }
 
   mkdir(dirPath: string, options: IDirectoryOptions = {}): Promise<void> {
