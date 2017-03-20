@@ -16,13 +16,13 @@ Native filesystem access for react-native
 
 First you need to install react-native-fs:
 
-```javascript
+```powershell
 npm install react-native-fs --save
 ```
 
 **Note:** If your react-native version is < 0.40 install with this tag instead:
 
-```javascript
+```powershell
 npm install react-native-fs@2.0.1-rc.2 --save
 ```
 
