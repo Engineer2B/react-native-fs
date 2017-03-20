@@ -15,7 +15,6 @@ export declare class FileSystem implements IFileSystem {
     DocumentDirectoryPath: string;
     ExternalDirectoryPath: string;
     ExternalStorageDirectoryPath: string;
-    TemporaryDirectoryPath: string;
     protected RNFSManager: NativeModules.IiOSRNFSManager | NativeModules.IAndroidRNFSManager;
     private _jobId;
     protected readonly jobId: number;

@@ -8,8 +8,15 @@ export class FileSystemAndroid extends FileSystem {
         this.DocumentDirectoryPath = this.RNFSManager.RNFSDocumentDirectoryPath;
         this.ExternalDirectoryPath = this.RNFSManager.RNFSExternalDirectoryPath;
         this.ExternalStorageDirectoryPath = this.RNFSManager.RNFSExternalStorageDirectoryPath;
-        this.TemporaryDirectoryPath = this.RNFSManager.RNFSTemporaryDirectoryPath;
         this.PicturesDirectoryPath = this.RNFSManager.RNFSPicturesDirectoryPath;
+        this.AlarmsDirectory = this.RNFSManager.RNFSDirectoryAlarms;
+        this.DCIMDirectory = this.RNFSManager.RNFSDirectoryDCIM;
+        this.DownloadsDirectory = this.RNFSManager.RNFSDirectoryDownloads;
+        this.MoviesDirectory = this.RNFSManager.RNFSDirectoryMovies;
+        this.MusicDirectory = this.RNFSManager.RNFSDirectoryMusic;
+        this.NotificationsDirectory = this.RNFSManager.RNFSDirectoryNotifications;
+        this.PodcastsDirectory = this.RNFSManager.RNFSDirectoryPodcasts;
+        this.RingtonesDirectory = this.RNFSManager.RNFSDirectoryRingtones;
     }
     getFSInfo(filePath = this.DocumentDirectory) {
         return this.RNFSManager.getFSInfo(filePath);

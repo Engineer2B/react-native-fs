@@ -619,7 +619,7 @@ public class RNFSManager extends ReactContextBaseJavaModule {
     constants.put("RNFSDirectoryMusic",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC).getAbsolutePath());
     constants.put("RNFSDirectoryNotifications",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_NOTIFICATIONS).getAbsolutePath());
     constants.put("RNFSDirectoryPodcasts",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PODCASTS).getAbsolutePath());
-    constants.put("RNFSDirectoryRingtones",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_RINGTONES).getAbsolutePath());;
+    constants.put("RNFSDirectoryRingtones",Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_RINGTONES).getAbsolutePath());
     /**
     public static String	DIRECTORY_ALARMS
     Standard directory in which to place any audio files that should be in the list of alarms that the user can select (not as regular music).

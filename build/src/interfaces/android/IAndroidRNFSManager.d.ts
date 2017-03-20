@@ -5,6 +5,14 @@ declare module 'react-native' {
         interface IAndroidRNFSManager extends IRNFSManager {
             RNFSDocumentDirectory: string;
             RNFSPicturesDirectoryPath: string;
+            RNFSDirectoryAlarms: string;
+            RNFSDirectoryDCIM: string;
+            RNFSDirectoryDownloads: string;
+            RNFSDirectoryMovies: string;
+            RNFSDirectoryMusic: string;
+            RNFSDirectoryNotifications: string;
+            RNFSDirectoryPodcasts: string;
+            RNFSDirectoryRingtones: string;
             /**
              * Read the assets of a file.
              * TODO: clarify what assets are.

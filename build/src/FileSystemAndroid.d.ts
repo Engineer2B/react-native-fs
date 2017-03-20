@@ -5,6 +5,14 @@ import { IFileSystemAndroid } from './interfaces/rnfs/IAndroidFileSystem';
 import { IFileSystemInfo } from './interfaces/native/IFileSystemInfo';
 import { IFilePathInfo } from './interfaces/native/IFilePathInfo';
 export declare class FileSystemAndroid extends FileSystem implements IFileSystemAndroid {
+    AlarmsDirectory: string;
+    DCIMDirectory: string;
+    DownloadsDirectory: string;
+    MoviesDirectory: string;
+    MusicDirectory: string;
+    NotificationsDirectory: string;
+    PodcastsDirectory: string;
+    RingtonesDirectory: string;
     DocumentDirectory: string;
     PicturesDirectoryPath: string;
     protected RNFSManager: NativeModules.IAndroidRNFSManager;

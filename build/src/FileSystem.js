@@ -12,7 +12,6 @@ export class FileSystem {
         this.DocumentDirectoryPath = this.RNFSManager.RNFSDocumentDirectoryPath;
         this.ExternalDirectoryPath = this.RNFSManager.RNFSExternalDirectoryPath;
         this.ExternalStorageDirectoryPath = this.RNFSManager.RNFSExternalStorageDirectoryPath;
-        this.TemporaryDirectoryPath = this.RNFSManager.RNFSTemporaryDirectoryPath;
     }
     get jobId() {
         this._jobId++;

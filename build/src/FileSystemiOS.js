@@ -5,6 +5,7 @@ export class FileSystemiOS extends FileSystem {
         super();
         this.MainBundlePath = this.RNFSManager.RNFSMainBundlePath;
         this.LibraryDirectoryPath = this.RNFSManager.RNFSLibraryDirectoryPath;
+        this.TemporaryDirectoryPath = this.RNFSManager.RNFSTemporaryDirectoryPath;
     }
     mkdir(dirPath, options = {}) {
         return this.RNFSManager.mkdir(dirPath, options);

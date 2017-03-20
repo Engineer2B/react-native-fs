@@ -15,7 +15,6 @@ export interface IFileSystem {
     DocumentDirectoryPath: string;
     ExternalDirectoryPath: string;
     ExternalStorageDirectoryPath: string;
-    TemporaryDirectoryPath: string;
     /**
      * Read the contents of a directory.
      * @param {string} dirPath The path to the directory.

@@ -6,6 +6,14 @@ declare module 'react-native' {
     export interface IAndroidRNFSManager extends IRNFSManager {
       RNFSDocumentDirectory: string;
       RNFSPicturesDirectoryPath: string;
+      RNFSDirectoryAlarms: string;
+      RNFSDirectoryDCIM: string;
+      RNFSDirectoryDownloads: string;
+      RNFSDirectoryMovies: string;
+      RNFSDirectoryMusic: string;
+      RNFSDirectoryNotifications: string;
+      RNFSDirectoryPodcasts: string;
+      RNFSDirectoryRingtones: string;
 
 
       /**
