@@ -27,8 +27,9 @@ npm install react-native-fs@2.0.1-rc.2 --save
 ```
 
 For TypeScript support add `node_modules/react-native-fs` to [typeRoots](https://github.com/Microsoft/TypeScript/issues/9725) in tsconfig.json:
+
 ```json
-    "typeRoots": ["node_modules/react-native-fs"]
+"typeRoots": ["node_modules/react-native-fs"]
 ```
 
 ### Adding automatically with react-native link
@@ -48,7 +49,8 @@ pod 'RNFS', :path => './node_modules/react-native-fs'
 ```
 
 Install pods as usual:
-```
+
+```powershell
 pod install
 ```
 
@@ -120,7 +122,8 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
 }
 ```
 
-  * For react-native 0.19.0 and higher
+* For react-native 0.19.0 and higher
+
 ```java
 import com.rnfs.RNFSPackage; // <------- add package
 
@@ -135,7 +138,8 @@ public class MainActivity extends ReactActivity {
     }
 ```
 
-  * For react-native 0.29.0 and higher ( in MainApplication.java )
+* For react-native 0.29.0 and higher ( in MainApplication.java )
+
 ```java
 import com.rnfs.RNFSPackage; // <------- add package
 
@@ -204,6 +208,7 @@ RNFS.writeFile(path, 'Lorem ipsum dolor sit amet', 'utf8')
 ```
 
 ### File deletion
+
 ```javascript
 // create a path you want to delete
 var path = RNFS.DocumentDirectoryPath + '/test.txt';
@@ -298,7 +303,7 @@ Reads the contents of `path`. This must be an absolute path. Use the above path 
 
 The returned promise resolves with an array of objects with the following properties:
 
-```
+```js
 type ReadDirItem = {
   name: string;     // The name of the item
   path: string;     // The absolute path to the item
@@ -310,18 +315,18 @@ type ReadDirItem = {
 
 ### `readDirAssets(dirpath: string): Promise<ReadDirItem[]>`
 
-Reads the contents of `dirpath ` in the Android app's assets folder.
-`dirpath ` is the relative path to the file from the root of the `assets` folder.
+Reads the contents of `dirpath` in the Android app's assets folder.
+`dirpath` is the relative path to the file from the root of the `assets` folder.
 
 The returned promise resolves with an array of objects with the following properties:
 
-```
+```js
 type ReadDirItem = {
   name: string;     // The name of the item
   path: string;     // The absolute path to the item
-  size: string;     // Size in bytes. 
-  						// Note that the size of files compressed during the creation of the APK (such as JSON files) cannot be determined. 
-  						// `size` will be set to -1 in this case.
+  size: string;     // Size in bytes.
+  // Note that the size of files compressed during the creation of the APK (such as JSON files) cannot be determined.
+  // `size` will be set to -1 in this case.
   isFile: () => boolean;        // Is the file just a file?
   isDirectory: () => boolean;   // Is the file a directory?
 };
@@ -383,7 +388,7 @@ Note: On Android copyFile will overwrite `destPath` if it already exists. On iOS
 
 ### `copyFileAssets(filepath: string, destPath: string): Promise<void>`
 
-Copies the file at `filepath ` in the Android app's assets folder and copies it to the given `destPath ` path.
+Copies the file at `filepath` in the Android app's assets folder and copies it to the given `destPath` path.
 
 Note: Android only. Will overwrite destPath if it already exists
 
@@ -407,7 +412,7 @@ Reads the file at `path` and returns its checksum as determined by `algorithm`, 
 
 ### `mkdir(filepath: string, options?: MkdirOptions): Promise<void>`
 
-```
+```js
 type MkdirOptions = {
   NSURLIsExcludedFromBackupKey?: boolean; // iOS only
 };
@@ -419,7 +424,7 @@ Create a directory at `filepath`. Automatically creates parents and does not thr
 
 ### `downloadFile(options: DownloadFileOptions): { jobId: number, promise: Promise<DownloadResult> }`
 
-```
+```js
 type DownloadFileOptions = {
   fromUrl: string;          // URL to download file from
   toFile: string;           // Local filesystem path to save the file to
@@ -430,7 +435,8 @@ type DownloadFileOptions = {
   progress?: (res: DownloadProgressCallbackResult) => void;
 };
 ```
-```
+
+```js
 type DownloadResult = {
   jobId: number;          // The download job ID, required if one wishes to cancel the download. See `stopDownload`.
   statusCode: number;     // The HTTP status code
@@ -442,7 +448,7 @@ Download file from `options.fromUrl` to `options.toFile`. Will overwrite any pre
 
 If `options.begin` is provided, it will be invoked once upon download starting when headers have been received and passed a single argument with the following properties:
 
-```
+```js
 type DownloadBeginCallbackResult = {
   jobId: number;          // The download job ID, required if one wishes to cancel the download. See `stopDownload`.
   statusCode: number;     // The HTTP status code
@@ -453,7 +459,7 @@ type DownloadBeginCallbackResult = {
 
 If `options.progress` is provided, it will be invoked continuously and passed a single argument with the following properties:
 
-```
+```js
 type DownloadProgressCallbackResult = {
   jobId: number;          // The download job ID, required if one wishes to cancel the download. See `stopDownload`.
   contentLength: number;  // The total size in bytes of the download resource
@@ -472,7 +478,6 @@ If `progressDivider` = 0, you will receive all `progressCallback` calls, default
                            background fetch](https://www.objc.io/issues/5-ios7/multitasking/#background-fetch<Paste>)
                            for your project in XCode.
 
-
 ### `stopDownload(jobId: number): void`
 
 Abort the current download job with this ID. The partial file will remain on the filesystem.
@@ -481,7 +486,7 @@ Abort the current download job with this ID. The partial file will remain on the
 
 `options` (`Object`) - An object containing named parameters
 
-```
+```js
 type UploadFileOptions = {
   toUrl: string;            // URL to upload file to
   files: UploadFileItem[];  // An array of objects with the file information to be uploaded.
@@ -493,7 +498,8 @@ type UploadFileOptions = {
 };
 
 ```
-```
+
+```js
 type UploadResult = {
   jobId: number;        // The upload job ID, required if one wishes to cancel the upload. See `stopUpload`.
   statusCode: number;   // The HTTP status code
@@ -504,7 +510,7 @@ type UploadResult = {
 
 Each file should have the following structure:
 
-```
+```js
 type UploadFileItem = {
   name: string;       // Name of the file, if not defined then filename is used
   filename: string;   // Name of file
@@ -515,7 +521,7 @@ type UploadFileItem = {
 
 If `options.begin` is provided, it will be invoked once upon upload has begun:
 
-```
+```js
 type UploadBeginCallbackResult = {
   jobId: number;        // The upload job ID, required if one wishes to cancel the upload. See `stopUpload`.
 };
@@ -523,7 +529,7 @@ type UploadBeginCallbackResult = {
 
 If `options.progress` is provided, it will be invoked continuously and passed a single object with the following properties:
 
-```
+```js
 type UploadProgressCallbackResult = {
   jobId: number;                      // The upload job ID, required if one wishes to cancel the upload. See `stopUpload`.
   totalBytesExpectedToSend: number;   // The total number of bytes that will be sent to the server
@@ -541,7 +547,7 @@ Abort the current upload job with this ID.
 
 Returns an object with the following properties:
 
-```
+```js
 type FSInfoResult = {
   totalSpace: number;   // The total amount of storage space on the device (in bytes).
   freeSpace: number;    // The amount of available storage space on the device (in bytes).

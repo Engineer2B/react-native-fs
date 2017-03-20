@@ -15,7 +15,6 @@ declare module 'react-native' {
       RNFSDirectoryPodcasts: string;
       RNFSDirectoryRingtones: string;
 
-
       /**
        * Read the assets of a file.
        * TODO: clarify what assets are.
