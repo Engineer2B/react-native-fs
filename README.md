@@ -22,8 +22,13 @@ npm install react-native-fs --save
 
 **Note:** If your react-native version is < 0.40 install with this tag instead:
 
-```
+```javascript
 npm install react-native-fs@2.0.1-rc.2 --save
+```
+
+For TypeScript support add `node_modules/react-native-fs` to typeRoots in tsconfig.json:
+```json
+    "typeRoots": ["node_modules/react-native-fs",...]
 ```
 
 ### Adding automatically with react-native link
