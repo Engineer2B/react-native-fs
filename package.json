@@ -1,6 +1,6 @@
 {
   "name": "react-native-fs",
-  "version": "v3.1.3",
+  "version": "v3.1.4",
   "description": "Native filesystem access for react-native",
   "main": "build/src/Main.js",
   "typings": "build/src/Main.d.ts",
