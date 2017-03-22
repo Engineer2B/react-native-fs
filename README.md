@@ -26,10 +26,10 @@ npm install react-native-fs --save
 npm install react-native-fs@2.0.1-rc.2 --save
 ```
 
-For TypeScript support add `node_modules/react-native-fs` to [typeRoots](https://github.com/Microsoft/TypeScript/issues/9725) in tsconfig.json:
+For TypeScript support set moduleResolution to "node" in tsconfig.json:
 
 ```json
-"typeRoots": ["node_modules/react-native-fs"]
+"moduleResolution": "node",
 ```
 
 ### Adding automatically with react-native link
